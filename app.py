@@ -1,7 +1,11 @@
-# app.py
-def welcome_message():
-    return "Hello DevOps Master!"
+from flask import Flask
 
-def calculate_uptime(days):
-    return days * 24 # Converts days to hours
-print('Version 2.0')
+# THIS LINE IS MISSING:
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello from the API!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
