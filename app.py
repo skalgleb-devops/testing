@@ -4,3 +4,4 @@ def welcome_message():
 
 def calculate_uptime(days):
     return days * 24 # Converts days to hours
+print('Version 2.0')
