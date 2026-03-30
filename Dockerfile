@@ -1,15 +1,14 @@
-# Use the tiny Alpine image
-FROM alpine:3.18
+FROM python:3.9-slim
 
-# Install Python and Pytest
-RUN apk add --no-cache python3 py3-pip curl && \
-    pip install pytest --break-system-packages
-
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy your files from your ThinkPad into the container
-COPY app.py test_app.py ./
+# Copy the requirements file first
+COPY requirements.txt .
 
-# This command runs the tests when the container starts
-CMD ["pytest"]
+# Install the "baked-in" tools
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of your code
+COPY . .
+
+CMD ["python", "app.py"]
